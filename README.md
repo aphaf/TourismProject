@@ -100,4 +100,4 @@ To explore the application with pre-set data, you can use the following logins:
 ### Search Attractions
 ![Search Attractions](./SolutionTourismApp/LibraryTourismApp/Screenshots/Attractions/Attractions-SearchAttractions.png)
 
-> _To see more images, check under the library project: SolutionTourismApp/LibraryTourismApp/Screenshots_
+> _To see more images, check under the library project: [SolutionTourismAppLibraryTourismApp/Screenshots](./SolutionTourismApp/LibraryTourismApp/Screenshots)_
