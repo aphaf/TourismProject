@@ -78,7 +78,7 @@ To explore the application with pre-set data, you can use the following logins:
 | Moderator | Test.Moderator2@test.com | Test.Moderator2 |
 | Tourist   | Test.Tourist1@test.com   | Test.Tourist1   |
 | Tourist   | Test.Tourist2@test.com   | Test.Tourist2   |
-> _These users are seeded automatically when intitlaizing the database_
+> _These users are seeded automatically when initializing the database_
 
 ## User Workflow
 
