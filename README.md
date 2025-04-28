@@ -95,9 +95,9 @@ To explore the application with pre-set data, you can use the following logins:
 ## Screenshots
 
 ### Home Page
-![Home Page](./LibraryTourismApp/Screenshots/HomePage/HomePage-LoggedIn.png)
+![Home Page](./SolutionTourismApp/LibraryTourismApp/Screenshots/HomePage/HomePage-LoggedIn.png)
 
 ### Search Attractions
-![Search Attractions](./LibraryTourismApp/Screenshots/Attractions/Attractions-SearchAttractions.png)
+![Search Attractions](./SolutionTourismApp/LibraryTourismApp/Screenshots/Attractions/Attractions-SearchAttractions.png)
 
 > _To see more images, check under the library project: SolutionTourismApp/LibraryTourismApp/Screenshots_
