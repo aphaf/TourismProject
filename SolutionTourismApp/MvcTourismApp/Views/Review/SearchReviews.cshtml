@@ -1,0 +1,147 @@
+﻿@model SearchReviewsViewModel
+
+@{
+    ViewData["Title"] = "Search Attraction Reviews";
+}
+
+<div class="container mt-5">
+    @if (Model.AttractionId != null)
+    {
+        <div class="attraction-info mb-4">
+            <p class="attraction-name font-weight-bold display-4">
+                Reviews for <span> <a asp-controller="Attraction" asp-action="GetAttractionDetails" asp-route-attractionId="@Model.AttractionId">@Model.AttractionName</a></span>
+               
+            </p>
+            <p class="located-at">
+                Located at <span class="attraction-location">@Model.AttractionFullAddress</span>
+            </p>
+
+            <a asp-controller="Attraction"
+               asp-action="GetAttractionDetails"
+               asp-route-attractionId="@Model.AttractionId"
+               class="btn btn-primary mt-3">
+                See Attraction Details
+            </a>
+        </div>
+    }
+    else
+    {
+        <h2>All Reviews</h2>
+        <hr />
+    }
+
+    <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#filterSection" aria-expanded="false" aria-controls="filterSection">
+        <h5>Toggle Filters</h5>
+    </button>
+
+    <hr />
+
+    <form asp-controller="Review" asp-action="SearchReviews" method="post" class="mb-5 collapse" id="filterSection">
+        <input type="hidden" asp-for="AttractionName" />
+        <input type="hidden" asp-for="AttractionFullAddress" />
+
+        <div class="row g-3 mb-3">
+            @if (Model.AttractionId == null)
+            {
+                <div class="col-md-6">
+                    <label asp-for="AttractionId" class="form-label">Attraction</label>
+                    <select asp-for="AttractionId"
+                            asp-items="ViewBag.AllAttractions"
+                            class="form-control">
+                        <option value="">-- Select an Attraction --</option>
+                    </select>
+                    <span asp-validation-for="AttractionId" class="text-danger"></span>
+                </div>
+            }
+            else
+            {
+                <input type="hidden" asp-for="AttractionId" />
+            }
+
+            <div class="col-md-6">
+                <label asp-for="SearchTouristId" class="form-label">Tourist Email</label>
+                <select asp-for="SearchTouristId"
+                        asp-items="ViewBag.AllTourists"
+                        class="form-control">
+                    <option value="">-- Select a Tourist Email --</option>
+                </select>
+                <span asp-validation-for="SearchTouristId" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Rating (greater than or equal to)</label>
+                <input asp-for="SearchRating" class="form-control" />
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Creation Date (from)</label>
+                <input asp-for="SearchStartCreationDate" class="form-control" />
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Creation Date (to)</label>
+                <input asp-for="SearchEndCreationDate" class="form-control" />
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-primary">Search Attraction Reviews</button>
+
+            <a asp-action="SearchReviews" class="btn btn-secondary">Clear Filters</a>
+        </div>
+    </form>
+
+    @if (Model.SearchResult != null)
+    {
+        @if (Model.SearchResult.Any())
+        {
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                @foreach (var review in Model.SearchResult)
+                {
+                    <div class="col">
+                        <div class="card h-100 shadow-sm border-0">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-baseline">
+                                    <h5 class="card-title mb-0 text-truncate" style="max-width: 60%; line-height: 1.3; font-size: 1.1rem; margin-right: 10px;">
+                                        @review.Title
+                                    </h5>
+                                    <div class="text-end" style="line-height: 1.3;">
+                                        <div>
+                                            @Html.Raw(review.FindStarRatingIcons())
+                                        </div>
+                                        <small class="text-muted">@($"{review.Rating} star(s)")</small>
+                                    </div>
+                                </div>
+
+                                <p>
+                                    <span class="attraction-review-info"> <a asp-controller="Attraction" asp-action="GetAttractionDetails" asp-route-attractionId="@review.Attraction.AttractionId">@review.Attraction.Name</a></span>
+
+                                    <br>
+                                    <span class="text-muted">@review.Attraction.FullAddress</span>
+                                </p>
+
+                                <p class="card-text">@review.Description</p>
+
+                                <p class="mb-1"><strong>Created by:</strong> @review.Tourist.FullName</p>
+                                <p class="mb-1"><strong>Created:</strong> @review.DateCreated.ToShortDateString()</p>
+                                <p>
+                                    <strong>Last Edited:</strong>
+                                    @if (review.LastEditedDate.HasValue)
+                                    {
+                                        @review.LastEditedDate.Value.ToShortDateString()
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">Has not been edited</span>
+                                    }
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-info mt-4">No reviews found for your search.</div>
+        }
+    }
+</div>

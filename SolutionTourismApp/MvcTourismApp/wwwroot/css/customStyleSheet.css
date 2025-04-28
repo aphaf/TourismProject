@@ -1,0 +1,320 @@
+﻿/*=================================
+=            General             =
+=================================*/
+body {
+    background-color: #faf9f2;
+    /* #243a54*/
+}
+
+.custom-text {
+    color: #495057;
+}
+
+.feature-card {
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px grey;
+    background-color: #91a4ba;
+}
+
+/* Styling for labels */
+.decision-label {
+    font-weight: bold;
+    font-size: 1.1em;
+    color: #333;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+
+/* Styling for decision info */
+.decision-info {
+    font-size: 1em;
+    color: #555;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+/* Spacing between different sections */
+.decision-info + .decision-info {
+    margin-top: 5px;
+}
+
+
+/*=================================
+=            Navbar              =
+=================================*/
+
+/*nav bar things*/
+.custom-navbar {
+    background-color: #002855 !important;
+}
+
+/*nav bar button*/
+.btn-outline-secondary {
+    color: #face1b;
+    border-color: #face1b;
+    font-weight: 500;
+}
+
+.btn-outline-secondary:hover {
+    color: #fad748;
+    background-color: #5b5e8a;
+    border-color: #b59e3e;
+}
+
+.btn-check:checked + .btn-outline-secondary,
+.btn-check:active + .btn-outline-secondary,
+.btn-outline-secondary:active,
+.btn-outline-secondary.active,
+.btn-outline-secondary.dropdown-toggle.show {
+    color: #fad748;
+    background-color: #4d5075;
+    border-color: #b59e3e;
+}
+
+.navbar-brand {
+    color: #face1b !important;
+    font-weight: 500;
+}
+
+.nav-link {
+    color: #face1b !important;
+    font-weight: 500;
+}
+
+.dropdown-menu {
+    background-color: #475a6e;
+}
+
+
+/*=================================
+=            Buttons             =
+=================================*/
+
+/*search button*/
+.btn-primary {
+    color: #fff;
+    background-color: #315f8f;
+    border-color: #0f2c4a;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #4579b0;
+    border-color: #0f2c4a;
+}
+
+
+/*=================================
+=         Form Controls          =
+=================================*/
+
+/*input boxes*/
+.form-control {
+    background-color: #fce195;
+    border: 1px solid #696dcf;
+}
+
+.form-control:focus {
+    background-color: #b8c2d1;
+    border-color: #22395c;
+}
+
+#theme-select.form-control {
+    height: 150px; /* Adjust this based on your design */
+    overflow-y: auto; /* Allow scrolling if options overflow */
+}
+
+/* Ensure Select2 container aligns exactly like form-control */
+.select2-container--default .select2-selection--single {
+    background-color: #fce195 !important;   /* Your custom background color */
+    border: 1px solid #696dcf !important;   /* Your custom border color */
+    border-radius: .25rem !important;       /* Match Bootstrap border radius */
+    height: calc(2.25rem + 2px) !important;  /* Match the height of the form-control */
+    padding: 0.375rem 0.75rem !important;    /* Match padding of form-control */
+    font-size: 1rem !important;             /* Match font size */
+    display: flex;
+    align-items: center;                   /* Vertically center text */
+    margin-bottom: 0 !important;            /* Prevent bottom margin misalignment */
+}
+
+/* Adjust the 'None selected' text and other options to have black text */
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    padding: 0 !important;                  /* Remove padding */
+    color: #000000 !important;              /* Black text color */
+    line-height: 1.5 !important;            /* Match line height for vertical alignment */
+    text-indent: 0 !important;              /* Remove any indent */
+    white-space: nowrap !important;         /* Prevent text from wrapping */
+}
+
+/* Change search field background to darker yellow and adjust text color */
+.select2-container--default .select2-search--dropdown .select2-search__field {
+    background-color: #fce195 !important;  /* same yellow for the search box */
+    color: #000000 !important;             /* Black text color */
+    padding-left: 0.75rem !important;      /* Align the search text with selection */
+    font-size: 1rem !important;            /* Match font size */
+    height: 2.25rem !important;            /* Match form-control height */
+    border-radius: .25rem !important;      /* Match border radius */
+    border: 1px solid #696dcf !important;  /* Match border color */
+}
+
+/* Match dropdown appearance to selection box */
+.select2-container--default .select2-dropdown {
+    background-color: #edd38a !important;  /* darker background color */
+    border: 1px solid #696dcf !important;  /* Match border color */
+    border-radius: .25rem !important;      /* Match border radius */
+    padding: 0.375rem 0.75rem !important;  /* Match padding */
+}
+
+/* Adjust the dropdown options appearance */
+.select2-container--default .select2-results__option {
+    padding: 8px 10px !important;    /* Adjust padding */
+    font-size: 1rem !important;      /* Match font size */
+}
+
+/* Ensure selected option has proper background and color */
+.select2-container--default .select2-results__option[aria-selected=true] {
+    background-color: #b8c2d1 !important;  /* Custom background for selected option */
+    color: #22395c !important;             /* Custom text color for selected option */
+}
+
+
+
+
+/*=================================
+=             Table              =
+=================================*/
+
+/*table things*/
+.table {
+    --bs-table-bg: transparent; /*entire table color*/
+    --bs-table-accent-bg: #a3aec7; /*table row 1 color*/
+    --bs-table-striped-color: black; /*table row 2 text color*/
+    color: black; /*table row 1 text color*/
+    --bs-table-striped-bg: #b8c1d6; /*table row 2 color*/
+    --bs-table-active-color: #212529;
+    --bs-table-active-bg: rgba(0, 0, 0, 0.1);
+    --bs-table-hover-color: #212529;
+    --bs-table-hover-bg: rgba(0, 0, 0, 0.075);
+    border-color: #40566b;
+}
+
+/*table link*/
+table a {
+    color: #1035c7;
+}
+
+/*hovering over link*/
+table a:hover {
+    color: #385deb;
+}
+
+
+/*=================================
+=            Footer              =
+=================================*/
+
+/*border line of footer*/
+.custom-border-top {
+    border-top: 1px solid #bfb084 !important;
+}
+
+
+/*=================================
+=         Reviews            =
+=================================*/
+.attraction-info {
+    background-color: #ffe9ab;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.attraction-name {
+    font-size: 2rem;      
+    color: #343a40;     
+    font-weight: 700;    
+}
+
+.attraction-name span {
+    color: #095ab5;      
+}
+
+.attraction-review-info {
+    color: #095ab5 !important;
+    font-weight: 700;
+}
+
+.located-at {
+    font-size: 1rem;
+    color: #43494f;
+}
+
+.attraction-location {
+    font-size: 1rem;
+    color: #005abf;
+}
+
+
+
+
+
+
+.custom-card {
+    background-color: #fefcf9;
+}
+
+
+.custom-card h2 {
+    color: #1f1070;
+}
+
+/*star rating*/
+.fa_custom {
+    color: gold;
+    font-size: 1.5rem; 
+}
+
+.star-rating {
+    position: relative;
+    display: inline-flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    margin: 0 -0.25rem;
+}
+
+.star-rating input {
+    position: absolute;
+    opacity: 0;
+}
+
+.star-rating label {
+    cursor: pointer;
+    color: grey;
+    padding: 0 0.25rem;
+    transition: color 0.15s;
+}
+
+.star-rating input:checked ~ label {
+    color: gold;
+}
+
+.star-rating input:hover ~ label {
+    color: goldenrod;
+    transition: none;
+}
+
+.star-rating label:active {
+    color: darkgoldenrod !important;
+}
+
+.star-rating input:focus-visible + label {
+    outline-offset: 1px;
+    outline: #4f46e5 solid 2px;
+}
+
+.star-rating i {
+    font-size: 2rem;
+}

@@ -1,0 +1,95 @@
+﻿@model IEnumerable<Attraction>
+
+@{
+    ViewData["Title"] = "Get All Denied Attractions";
+}
+
+<h3>Get All Denied Attractions</h3>
+
+
+@if (Model != null)
+{
+    @if (Model.Any())
+    {
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Address</th>
+                    <th>County</th>
+                    <th>Website</th>
+                    <th>Theme</th>
+                    <th>Type of Attraction</th>
+                    <th>Status</th>
+                    <th>Edit Links</th>
+                    <th>Delete links</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (Attraction eachAttraction in Model)
+                {
+                    <tr>
+                        <td>@eachAttraction.Name</td>
+                        <td>@eachAttraction.Description</td>
+
+                        <td>
+                            <a href="https://www.google.com/maps/search/?api=1&query=@eachAttraction.FullAddress">
+                                @($"{eachAttraction.FullAddress}")
+                            </a>
+                        </td>
+
+                        <td>@eachAttraction.County</td>
+
+                        <td>
+                            @if (eachAttraction.Website != null)
+                            {
+                                <a href="@eachAttraction.Website">@eachAttraction.Website</a>
+                            }
+                            else
+                            {
+                                @("No website found")
+                            }
+                        </td>
+
+                        <td>
+                            @if (eachAttraction.Themes.Any())
+                            {
+                                <ul>
+                                    @foreach (AttractionTheme eachTheme in eachAttraction.Themes)
+                                    {
+                                        <li>
+                                            @(eachTheme.Theme.Name)
+                                        </li>
+                                    }
+                                </ul>
+                            }
+                            else
+                            {
+                                @("No themes associated with this attraction.")
+                            }
+                        </td>
+
+                        <td>@eachAttraction.TypeOfAttraction</td>
+
+                        <td>@eachAttraction.Status</td>
+
+                        <td>
+                            <a asp-controller="Attraction" asp-action="EditAttraction" asp-route-attractionId="@eachAttraction.AttractionId">Edit</a>
+                        </td>
+
+                        <td>
+                            <a asp-controller="Attraction" asp-action="DeleteAttraction" asp-route-attractionId="@eachAttraction.AttractionId">Delete</a>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        @("No Attractions Found")
+    }
+}

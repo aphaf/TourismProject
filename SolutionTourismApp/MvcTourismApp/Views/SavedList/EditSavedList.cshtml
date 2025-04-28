@@ -1,0 +1,47 @@
+﻿@model EditSavedListViewModel
+
+@{
+    ViewData["Title"] = "Edit Saved List";
+}
+
+<h1>Edit @Model.Name List</h1>
+<div>
+    <p class="text-muted">
+        Created: @Model.DateCreated.Value.ToString("MMMM dd, yyyy")
+    </p>
+</div>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditSavedList" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <input type="hidden" asp-for="SavedListId" />
+            <input type="hidden" asp-for="DateCreated" />
+
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+           
+
+            <br />
+
+            <div class="form-group d-flex justify-content-between">
+                <a asp-action="GetSavedListDetails" asp-route-savedListId="@Model.SavedListId" class="btn btn-secondary">
+                    Cancel
+                </a>
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+            </div>
+        </form>
+    </div>
+</div>

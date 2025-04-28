@@ -1,0 +1,64 @@
+﻿@model SavedList
+@{
+    ViewData["Title"] = "GetSavedListDetails";
+}
+
+<h1>@Model.Name</h1>
+<h3 class="text-muted">@Model.Description</h3>
+<h6 class="text-muted">Created on: @Model.DateCreated.ToString("MMMM dd, yyyy")</h6>
+
+
+@if (Model.AttractionList.Any())
+{
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        @foreach (AttractionSavedList eachASL in Model.AttractionList)
+        {
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body custom-card">
+                        <h5 class="card-title">
+                            <a asp-controller="Attraction" asp-action="GetAttractionDetails" asp-route-attractionId="@eachASL.Attraction.AttractionId">
+                                @eachASL.Attraction.Name
+                            </a>
+                        </h5>
+
+                        <p class="card-text">@eachASL.Attraction.Description</p>
+
+                        <p class="card-text">
+                            <strong>Details:</strong>
+                            <a asp-controller="Attraction" asp-action="GetAttractionDetails" asp-route-attractionId="@eachASL.AttractionId">View Details</a>
+                        </p>
+
+                        <p class="card-text">
+                            <strong>Reviews:</strong>
+                            @if (eachASL.Attraction.Reviews.Any())
+                            {
+                                <a asp-controller="Review" asp-action="AddReview" asp-route-attractionId="@eachASL.AttractionId">Add Review</a> 
+                                
+                                <a asp-controller="Review" asp-action="SearchReviews" asp-route-attractionId="@eachASL.AttractionId">See All Reviews</a>
+                            }
+                            else
+                            {
+                                <a asp-controller="Review" asp-action="AddReview" asp-route-attractionId="@eachASL.AttractionId">Be the First to Review!</a>
+                            }
+                        </p>
+                    </div>
+
+                    <div class="card-footer text-end">
+                        <form action="@Url.Action("DeleteAttractionOnSavedList", "SavedList", new { attractionSavedListId = eachASL.AttractionSavedListId })" method="post">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p>No Attractions have been added to this list.</p>
+}
+
+<a asp-action="EditSavedList" asp-route-savedListId="@Model.SavedListId" class="btn btn-warning mt-4">Edit</a>
+<a asp-controller="Attraction" asp-action="SearchAttractions" class="btn btn-primary mt-4">Search Attractions to Add!</a>
+<a asp-action="DeleteSavedList" asp-route-savedListId="@Model.SavedListId" class="btn btn-danger mt-4">Delete</a>

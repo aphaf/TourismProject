@@ -1,0 +1,36 @@
+﻿@model DeleteAttractionViewModel
+
+@{
+    ViewData["Title"] = "Delete Attraction";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-3 text-danger">Are you sure you want to delete this attraction?</h2>
+    <h5 class="text-muted mb-4">View the details below, and make a decision.</h5>
+
+    <div class="card shadow p-4 mb-4 custom-card">
+        <div class="card-body">
+            <h4 class="card-title">@Model.Name</h4>
+            <p class="card-text">@Model.Description</p>
+            <p class="card-text">
+                <strong>Location: </strong>
+                <a href="https://www.google.com/maps/search/?api=1&query=@Model.FullAddress" target="_blank">
+                    @Model.FullAddress
+                </a>
+            </p>
+        </div>
+    </div>
+
+    <div class="d-flex gap-3">
+        <a asp-controller="Attraction" asp-action="GetAttractionDetails" asp-route-attractionId="@Model.AttractionId" class="btn btn-secondary">
+            Cancel
+        </a>
+
+        <form asp-controller="Attraction" asp-action="DeleteAttraction" method="post">
+            <input type="hidden" asp-for="AttractionId" />
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+
+        
+    </div>
+</div>

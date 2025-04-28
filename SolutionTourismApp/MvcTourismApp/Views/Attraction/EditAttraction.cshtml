@@ -1,0 +1,124 @@
+﻿@model EditAttractionViewModel
+
+@{
+	ViewData["Title"] = "EditAttraction";
+}
+
+<h1>Edit Attraction</h1>
+
+<h4>@Model.Name</h4>
+<hr />
+<form asp-action="EditAttraction">
+	<div class="row">
+
+		<div class="col-md-8">
+			<div asp-validation-summary="All" class="text-danger"></div>
+
+			<input type="hidden" asp-for="AttractionId" />
+
+			<div class="form-group">
+				<label asp-for="Name" class="control-label"></label>
+				<input asp-for="Name" class="form-control" />
+				<span asp-validation-for="Name" class="text-danger"></span>
+			</div>
+
+			<div class="form-group">
+				<label asp-for="Description" class="control-label"></label>
+				<input asp-for="Description" class="form-control" />
+				<span asp-validation-for="Description" class="text-danger"></span>
+			</div>
+
+			<div class="form-group">
+				<label asp-for="Website" class="control-label"></label>
+				<input asp-for="Website" class="form-control" />
+				<span asp-validation-for="Website" class="text-danger"></span>
+			</div>
+
+			<div class="form-group">
+				<label asp-for="TypeOfAttraction" class="control-label"></label>
+				<select asp-for="TypeOfAttraction"
+						asp-items="Html.GetEnumSelectList<AttractionTypes>()"
+						class="form-control">
+					<option value="">None Selected</option>
+				</select>
+				<span asp-validation-for="TypeOfAttraction" class="text-danger"></span>
+			</div>
+
+			<div class="form-group row">
+				<div class="col-md-6">
+					<label asp-for="Street" class="control-label"></label>
+					<input asp-for="Street" class="form-control" />
+					<span asp-validation-for="Street" class="text-danger"></span>
+				</div>
+
+				<div class="col-md-6">
+					<label asp-for="City" class="control-label"></label>
+					<input asp-for="City" class="form-control" />
+					<span asp-validation-for="City" class="text-danger"></span>
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<div class="col-md-4">
+					<label asp-for="State" class="control-label"></label>
+					<input asp-for="State" class="form-control" />
+					<span asp-validation-for="State" class="text-danger"></span>
+				</div>
+
+				<div class="col-md-4">
+					<label asp-for="ZipCode" class="control-label"></label>
+					<input asp-for="ZipCode" class="form-control" />
+					<span asp-validation-for="ZipCode" class="text-danger"></span>
+				</div>
+
+				<div class="col-md-4">
+					<label asp-for="County" class="control-label"></label>
+					<input asp-for="County" class="form-control" />
+					<span asp-validation-for="County" class="text-danger"></span>
+				</div>
+			</div>
+
+			<br />
+			
+			<div class="form-group">
+				<a asp-controller="Attraction" asp-action="GetAttractionDetails" asp-route-attractionId="@Model.AttractionId" class="btn btn-secondary">
+					Cancel
+				</a>
+				<input type="submit" value="Save" class="btn btn-primary" />
+			</div>
+
+			<br />
+			<div>
+				<a asp-action="SearchAttractions">See All Attractions</a>
+			</div>
+
+
+
+		</div>
+
+		<div class="col-md-4">
+			<div class="form-group">
+				<label asp-for="Status" class="control-label"></label>
+				<select asp-for="Status"
+						asp-items="Html.GetEnumSelectList<AttractionStatus>()"
+						class="form-control">
+				</select>
+				<span asp-validation-for="Status" class="text-danger"></span>
+			</div>
+
+			@if (Model.ModeratorWhoMadeDecision != null)
+			{
+				<div class="form-group">
+					<label class="decision-label">Decision made by:</label>
+					<span class="decision-info">@Model.ModeratorWhoMadeDecision.FullName</span>
+					<br />
+					<span class="decision-info">@Model.ModeratorWhoMadeDecision.Email</span>
+					<br />
+
+					<label class="decision-label">Decision made:</label>
+					<span class="decision-info">@Model.DateDecisionMade</span>
+				</div>
+			}
+		</div>
+	</div>
+</form>

@@ -1,0 +1,69 @@
+﻿@model EditReviewViewModel
+
+@{
+    ViewData["Title"] = $"Edit Review for {Model.AttractionName}";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-sm rounded-3 custom-card">
+        <div class="card-body">
+            <h2 class="card-title mb-4">Edit Review for @Model.AttractionName</h2>
+
+
+            <form asp-action="EditReview" method="post">
+
+                <div asp-validation-summary="All" class="text-danger mb-3"></div>
+                <input type="hidden" asp-for="ReviewId" />
+                <input type="hidden" asp-for="TouristEmail" />
+                <input type="hidden" asp-for="TouristFullName" />
+                <input type="hidden" asp-for="AttractionName" />
+                <input type="hidden" asp-for="AttractionAddress" />
+
+
+                <div class="mb-4">
+                    <h4 class="mb-1">@Model.AttractionName</h4>
+                    <p class="text-muted mb-0"><i>@Model.AttractionAddress</i></p>
+                </div>
+
+                <div class="mb-4">
+                    <h5 class="mb-1">@Model.Title</h5>
+                    <p class="mb-0">
+                        Created on @Model.DateCreated?.ToString("MMMM d, yyyy")<br />
+                        <i>by @Model.TouristFullName</i>
+                    </p>
+                </div>
+
+                <hr />
+
+                <div class="mb-3">
+                    <label asp-for="Title" class="form-label">Review Title</label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Rating" class="form-label">Rating</label>
+                    <input asp-for="Rating" class="form-control" />
+                    <span asp-validation-for="Rating" class="text-danger"></span>
+                </div>                
+
+                <div class="mb-3">
+                    <label asp-for="Description" class="form-label">Review Description</label>
+                    <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="DateVisited" class="form-label">Date Visited</label>
+                    <input asp-for="DateVisited" class="form-control" type="date" />
+                    <span asp-validation-for="DateVisited" class="text-danger"></span>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mt-4">
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <a asp-action="ListAllReviewsForUser" class="btn btn-link">See my reviews</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

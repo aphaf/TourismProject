@@ -1,0 +1,40 @@
+﻿@model AddAttractionToSavedListViewModel
+
+@{
+    ViewData["Title"] = "Add Attraction to Saved List";
+}
+
+<h3>Which Saved List would you like to add <strong>@Model.AttractionName</strong> to?</h3>
+
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form asp-controller="SavedList" asp-action="AddAttractionToSavedList" method="post">
+    <input type="hidden" asp-for="AttractionId" />
+    <input type="hidden" asp-for="AttractionName" />
+    <input type="hidden" asp-for="AttractionAddress" />
+
+    <div class="card mb-3 custom-card">
+        <div class="card-body">
+            <h4>Attraction Details</h4>
+            <hr />
+            <h5 class="card-title">@Model.AttractionName</h5>
+            <p class="card-text">
+                <strong>Address:</strong> @Model.AttractionAddress
+            </p>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label asp-for="SavedListId" class="control-label">Saved List</label>
+        <select asp-for="SavedListId"
+                asp-items="ViewBag.AllSavedLists"
+                class="form-control"
+                id="SavedListId">
+            <option value="">-- Select a list --</option>
+        </select>
+        <span asp-validation-for="SavedListId" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Add Attraction</button>
+</form>

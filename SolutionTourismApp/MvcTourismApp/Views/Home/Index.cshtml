@@ -1,0 +1,86 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center mb-4">
+    <h1 class="display-4">Welcome to US Tourism</h1>
+    <p>
+        Model-View-Controller (MVC) ASP.Net Core Application written in C# designed to showcase US attractions.
+        <br />
+        Within this application, a user can search attractions, create reviews, and add attractions to a saved list.
+    </p>
+</div>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-3 feature-card text-center d-flex flex-column align-items-center justify-content-center">
+                <div class="text-center d-flex flex-column align-items-center">
+                    <h5>Check out what attractions we have to showcase:</h5>
+                    <p>
+                        <a class="btn btn-primary" asp-controller="Attraction" asp-action="SearchAttractions">Search Attractions</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-3 feature-card text-center">
+                <h5>Find reviews for an attraction:</h5>
+                <form asp-controller="Review" asp-action="SearchReviews" asp-route-attractionId="1" method="get">
+                    <div class="form-group">
+                        <label>Select Attraction</label>
+                        <select id="SelectReviewAttraction"
+                                name="AttractionId"
+                                asp-items="@ViewBag.AllAttractions"
+                                class="form-control select2">
+                            <option value="">None selected</option>
+                        </select>
+                    </div>
+                    <p>
+                        <button type="submit" class="btn btn-primary">Search Reviews</button>
+                    </p>
+                </form>
+            </div>
+
+            <div class="col-3 feature-card text-center d-flex flex-column align-items-center justify-content-center">
+                <h5 class="mb-3">Start creating a saved list:</h5>
+                <p>
+                    <a class="btn btn-primary" asp-controller="SavedList" asp-action="CreateSavedList">Create Saved List</a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+}
+else
+{
+    <div class="container">
+        <div class="text-center mb-3">
+            <p>To get started, choose an option below:</p>
+        </div>
+
+        <div class="row justify-content-center">
+
+            <div class="col-3 feature-card text-center">
+                <h5>New Users:</h5>
+                <p>
+                    <a class="btn btn-primary btn-lg" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                </p>
+            </div>
+
+            <div class="col-3 feature-card text-center">
+                <h5>Previous Users:</h5>
+                <p>
+                    <a class="btn btn-primary btn-lg" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+}
+
+<script>
+    $(document).ready(function () {
+        $('#SelectReviewAttraction').select2();
+    });
+</script>

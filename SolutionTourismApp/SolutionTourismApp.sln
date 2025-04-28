@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35707.178 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcTourismApp", "MvcTourismApp\MvcTourismApp.csproj", "{33BABBB5-F672-4082-9CEC-C4AE605F68D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTourismApp", "TestTourismApp\TestTourismApp.csproj", "{0C42DB8B-FBE0-4341-AAD7-8400DEF8D4C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryTourismApp", "LibraryTourismApp\LibraryTourismApp.csproj", "{6A463655-A411-4386-A80B-08836CD2BE6A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{33BABBB5-F672-4082-9CEC-C4AE605F68D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33BABBB5-F672-4082-9CEC-C4AE605F68D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33BABBB5-F672-4082-9CEC-C4AE605F68D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33BABBB5-F672-4082-9CEC-C4AE605F68D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C42DB8B-FBE0-4341-AAD7-8400DEF8D4C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C42DB8B-FBE0-4341-AAD7-8400DEF8D4C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C42DB8B-FBE0-4341-AAD7-8400DEF8D4C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C42DB8B-FBE0-4341-AAD7-8400DEF8D4C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A463655-A411-4386-A80B-08836CD2BE6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A463655-A411-4386-A80B-08836CD2BE6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A463655-A411-4386-A80B-08836CD2BE6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A463655-A411-4386-A80B-08836CD2BE6A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

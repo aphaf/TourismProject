@@ -1,0 +1,79 @@
+﻿@model AddReviewViewModel
+@{
+    ViewData["Title"] = "Add Review";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-sm rounded-3 custom-card">
+        <div class="card-body">
+            <h2 class="card-title mb-4">Add a Review for @Model.AttractionName</h2>
+
+            <div class="mb-3">
+                <strong>Attraction:</strong> @Model.AttractionName<br />
+                <strong>Address:</strong> <i>@Model.AttractionAddress</i>
+            </div>
+
+            <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+            <form asp-controller="Review" asp-action="AddReview" method="post">
+                <input type="hidden" asp-for="AttractionId" />
+                <input type="hidden" asp-for="AttractionName" />
+                <input type="hidden" asp-for="AttractionAddress" />
+
+                <div class="mb-3">
+                    <label asp-for="Title" class="form-label"><strong>Review Title:</strong></label>
+                    <textarea asp-for="Title" class="form-control" rows="4" placeholder="Title..."></textarea>
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+
+                <!--reference for stars: https://www.putzisan.com/articles/html-css-star-rating-input-->
+                <div class="mb-3">
+                    <label class="form-label"><strong>Rating:</strong></label>
+                    <br />
+                    <div class="star-rating" tabindex="0">
+                        <!-- Star 5 -->
+                        <input type="radio" id="sr-0-5" name="Rating" value="5" />
+                        <label for="sr-0-5" title="5 stars">
+                            <i class="fa fa-star fa-custom"></i>
+                        </label>
+                        <!-- Star 4 -->
+                        <input type="radio" id="sr-0-4" name="Rating" value="4" />
+                        <label for="sr-0-4" title="4 stars">
+                            <i class="fa fa-star fa-custom"></i>
+                        </label>
+                        <!-- Star 3 -->
+                        <input type="radio" id="sr-0-3" name="Rating" value="3" />
+                        <label for="sr-0-3" title="3 stars">
+                            <i class="fa fa-star fa-custom"></i>
+                        </label>
+                        <!-- Star 2 -->
+                        <input type="radio" id="sr-0-2" name="Rating" value="2" />
+                        <label for="sr-0-2" title="2 stars">
+                            <i class="fa fa-star fa-custom"></i>
+                        </label>
+                        <!-- Star 1 -->
+                        <input type="radio" id="sr-0-1" name="Rating" value="1" />
+                        <label for="sr-0-1" title="1 star">
+                            <i class="fa fa-star fa-custom"></i>
+                        </label>
+                    </div>
+                    <span asp-validation-for="Rating" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Description" class="form-label"><strong>Review Description:</strong></label>
+                    <textarea asp-for="Description" class="form-control" rows="4" placeholder="Write your thoughts here..."></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="DateVisited" class="form-label"><strong>Date Visited:</strong></label>
+                    <input asp-for="DateVisited" class="form-control" type="date" />
+                    <span asp-validation-for="DateVisited" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-success">Submit Review</button>
+            </form>
+        </div>
+    </div>
+</div>

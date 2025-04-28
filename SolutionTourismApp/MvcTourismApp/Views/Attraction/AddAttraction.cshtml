@@ -1,0 +1,87 @@
+﻿@model AddAttractionViewModel
+
+@{
+    ViewData["Title"] = "Add Attraction";
+}
+
+<h1>Add Attraction</h1>
+
+<div asp-validation-summary="All" class="text-danger">
+</div>
+
+<form asp-controller="Attraction" asp-action="AddAttraction" method="post">
+
+    <h3><strong>Attraction Information:</strong></h3>
+    <div class="form-group">
+        <label>Name</label>
+        <input asp-for="Name" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Description</label>
+        <input asp-for="Description" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Attraction Type</label>
+        <select asp-for="TypeOfAttraction"
+                asp-items="Html.GetEnumSelectList<AttractionTypes>()"
+                class="form-control">
+            <option value="">None Selected</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Website</label>
+        <input asp-for="Website" class="form-control" />
+    </div>
+
+    <br />
+    <h4><strong>Themes:</strong></h4>
+    <div class="form-group">
+        <label>Choose Theme(s)</label>
+        <select id="theme-select" asp-for="ThemeIds" size="5" multiple
+                asp-items="ViewBag.AllThemes" class="form-control">
+        </select>
+    </div>
+
+    <br />
+    <h4><strong>Address:</strong></h4>
+    <div class="form-group row">
+        <div class="col-md-6">
+            <label asp-for="Street" class="control-label"></label>
+            <input asp-for="Street" class="form-control" />
+            <span asp-validation-for="Street" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-6">
+            <label asp-for="City" class="control-label"></label>
+            <input asp-for="City" class="form-control" />
+            <span asp-validation-for="City" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-md-4">
+            <label asp-for="State" class="control-label"></label>
+            <input asp-for="State" class="form-control" />
+            <span asp-validation-for="State" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-4">
+            <label asp-for="ZipCode" class="control-label"></label>
+            <input asp-for="ZipCode" class="form-control" />
+            <span asp-validation-for="ZipCode" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-4">
+            <label asp-for="County" class="control-label"></label>
+            <input asp-for="County" class="form-control" />
+            <span asp-validation-for="County" class="text-danger"></span>
+        </div>
+    </div>
+
+    
+
+    <button type="submit" class="btn btn-primary">Add Attraction</button>
+</form>

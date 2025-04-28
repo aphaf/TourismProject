@@ -1,0 +1,26 @@
+﻿@model CreateSavedListViewModel
+@{
+    ViewData["Title"] = "Create Saved List";
+}
+
+<h1 class="mb-4">@ViewData["Title"]</h1>
+
+<hr />
+
+<div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+<form asp-controller="SavedList" asp-action="CreateSavedList" method="post">
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Description" class="form-label">Description (Optional)</label>
+        <input asp-for="Description" class="form-control" />
+        <span asp-validation-for="Description"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create Saved List</button>
+</form>

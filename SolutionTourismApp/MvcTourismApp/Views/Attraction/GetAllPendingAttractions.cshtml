@@ -1,0 +1,119 @@
+﻿@model MakeDecisionsOnAttractionsViewModel
+@{
+    ViewData["Title"] = "Pending Attractions";
+}
+
+<h3>Pending Attractions</h3>
+
+@if (Model.PendingAttractions != null)
+{
+    @if (Model.PendingAttractions.Any())
+    {
+        <form asp-controller="Attraction" asp-action="MakeDecisionsOnAttractions" method="post">
+
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Address</th>
+                        <th>County</th>
+                        <th>Website</th>
+                        <th>Theme</th>
+                        <th>Type of Attraction</th>
+                        <th>Tourist Who Added</th>
+                        <th>Edit Links</th>
+                        <th>Decision</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (Attraction eachAttraction in Model.PendingAttractions)
+                    {
+                        <tr>
+                            <td>@eachAttraction.Name</td>
+                            <td>@eachAttraction.Description</td>
+
+                            <td>
+                                <a href="https://www.google.com/maps/search/?api=1&query=@eachAttraction.FullAddress">
+                                    @($"{eachAttraction.FullAddress}")
+                                </a>
+                            </td>
+
+                            <td>@eachAttraction.County</td>
+
+                            <td>
+                                @if (eachAttraction.Website != null)
+                                {
+                                    <a href="@eachAttraction.Website">@eachAttraction.Website</a>
+                                }
+                                else
+                                {
+                                    @("No website found")
+                                }
+                            </td>
+
+                            <td>
+                                @if (eachAttraction.Themes.Any())
+                                {
+                                    <ul>
+                                        @foreach (AttractionTheme eachTheme in eachAttraction.Themes)
+                                        {
+                                            <li>
+                                                @(eachTheme.Theme.Name)
+                                            </li>
+                                        }
+                                    </ul>
+                                }
+                                else
+                                {
+                                    @("No themes associated with this attraction.")
+                                }
+                            </td>
+
+                            <td>@eachAttraction.TypeOfAttraction</td>
+
+
+                            <td>
+                                @if (eachAttraction.TouristWhoAdded != null)
+                                {
+                                    @eachAttraction.TouristWhoAdded.FullName
+                                }
+                                else
+                                {
+                                    @("Not added by user")
+                                }
+                            </td>
+                            <td>
+                                <a asp-controller="Attraction" asp-action="EditAttraction" asp-route-attractionId="@eachAttraction.AttractionId">Edit</a>
+                            </td>
+
+                            <td>
+                                <input type="hidden" name="attractionIds" value="@eachAttraction.AttractionId" />
+
+                                <div class="form-group">
+                                    <label>Decision Status</label>
+                                    <select name="decisions"
+                                            class="form-control">
+                                        <option value="">None</option>
+                                        <option value="1">Approve</option>
+                                        <option value="2">Deny</option>
+                                    </select>
+                                </div>
+
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <button type="submit" class="btn btn-primary">Submit decisions</button>
+
+        </form>
+    }
+    else
+    {
+        @("No Attractions Found")
+    }
+}

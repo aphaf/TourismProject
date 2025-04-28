@@ -1,0 +1,50 @@
+﻿@model ListAllTouristsViewModel
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>Full Name</th>
+			<th>Email</th>
+			<th>Date of Birth</th>
+			<th>Number of Reviews Made</th>
+			<th>Number of Attractions Added</th>
+			<th>Most Recent Post</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (Tourist tourist in Model.ListOfTourists)
+		{
+			<tr>
+				<td>@tourist.FullName</td>
+				<td>@tourist.Email</td>
+				<td>@tourist.DateOfBirth.ToShortDateString()</td>
+				<td>@tourist.ReviewsCreated.Count</td>
+				<td>@tourist.AttractionsAdded.Count</td>
+				<td>
+					<a asp-action="ListAllTourists" asp-route-touristId="@tourist.Id" class="btn btn-primary">Find</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
+
+@if (Model.RecentReview != null)
+{
+	<div class="card mt-4">
+		<div class="card-header">
+			<h5>Recent Post</h5>
+		</div>
+		<div class="card-body">
+			<h5 class="card-title">@Model.RecentReview.Title</h5>
+			<p class="card-text">@Model.RecentReview.Description?.Substring(0, Math.Min(Model.RecentReview.Description.Length, 100))...</p>
+			<p class="card-text"><small class="text-muted">Published on: @Model.RecentReview.DateCreated.ToShortDateString()</small></p>
+		</div>
+	</div>
+}
+else if (Model.TouristId != null && Model.RecentReview == null)
+{
+	<div class="alert alert-info" role="alert">
+		<h5>No Recent Post</h5>
+	</div>
+
+}

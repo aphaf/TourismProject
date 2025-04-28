@@ -1,0 +1,168 @@
+﻿@model Attraction
+
+@{
+	ViewData["Title"] = "Attraction Details";
+}
+
+
+<h1>@Model.Name</h1>
+<p>
+	@Model.Description
+</p>
+<br />
+
+<h2>Details</h2>
+<hr />
+
+<aside>
+	<details>
+		<summary>
+			<strong>Type of Attraction:</strong>
+		</summary>
+		<p>
+			@Model.TypeOfAttraction
+		</p>
+	</details>
+</aside>
+
+<hr />
+
+<aside>
+	<details>
+		<summary>
+			<strong>Location:</strong>
+		</summary>
+
+		<i>
+			<a href="https://www.google.com/maps/search/?api=1&query=@Model.FullAddress">
+
+				@Model.FullAddress
+			</a>
+			<br />
+			@Model.County
+		</i>
+
+	</details>
+</aside>
+
+<hr />
+
+@if (Model.Website != null)
+{
+	<aside>
+		<details>
+			<summary>
+				<strong>Website:</strong>
+			</summary>
+			<p>
+				<a href="@Model.Website">@Model.Website</a>
+			</p>
+		</details>
+	</aside>
+
+	<hr />
+}
+
+
+<aside>
+	<details>
+		<summary>
+			<strong>Reviews</strong>
+		</summary>
+
+		<p>
+			<br />
+			<button class="btn btn-primary" onclick="location.href='@Url.Action("AddReview", "Review", new { attractionId = Model.AttractionId })'">
+				<strong>Leave a review</strong>
+			</button>
+			<br />
+
+			@if (Model.Reviews.Any())
+			{
+				<h4><strong>Rating</strong></h4>
+
+				@Html.Raw(@Model.FindAvgStarRatingIcons())
+				
+				<br />
+
+				@($"{Model.FindAverageReviewRating():n} out of 5 star(s)")
+
+				@(" -")
+				<a asp-controller="Review" asp-action="SearchReviews" asp-route-attractionId="@Model.AttractionId">
+					@(
+									$"{Model.Reviews.Count} review(s)"
+									)
+				</a>
+
+				<br>
+
+				<strong>Recent Reviews</strong>
+				<table class="table table-bordered table-striped">
+					<thead>
+						<tr>
+
+							<td>
+								<strong>Rating</strong>
+							</td>
+							<td>
+								<strong>Description</strong>
+							</td>
+						</tr>
+					</thead>
+
+					<tbody>
+						@foreach (Review eachReview in Model.FindMostRecentReviews().Take(5))
+						{
+							<tr>
+								<td>
+									@Html.Raw(eachReview.FindStarRatingIcons())
+									@($"{eachReview.Rating} star(s)")
+								</td>
+								<td>
+									@eachReview.Description
+								</td>
+
+							</tr>
+						}
+					</tbody>
+
+				</table>
+
+				<a asp-controller="Review" asp-action="SearchReviews" asp-route-attractionId="@Model.AttractionId">See All Reviews</a>
+			}
+		</p>
+	</details>
+</aside>
+
+<hr />
+
+
+<aside>
+	<details>
+		<summary>
+			<strong>Links:</strong>
+		</summary>
+
+		<p>
+			<ul>
+				<li>
+
+					<a asp-controller="SavedList" asp-action="AddAttractionToSavedList" asp-route-attractionId="@Model.AttractionId">Add to a Saved List</a>
+				</li>
+
+				<li>
+					<a asp-controller="Attraction" asp-action="SearchAttractions">Search All Attractions</a>
+				</li>
+
+				@if (User.IsInRole("Moderator"))
+				{
+					<li>
+						<a asp-controller="Attraction" asp-action="EditAttraction" asp-route-attractionId="@Model.AttractionId">Edit</a>
+					</li>
+				}
+			</ul>
+		</p>
+	</details>
+</aside>
+
+<hr />
